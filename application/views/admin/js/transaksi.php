@@ -80,6 +80,50 @@
 			case "bayar" :
 				bayarTransaksi();
 				break;
+			case "print-struk":
+				printStruk(id)
+				break
 		}
 	})
+
+	var printStruk = async id_transaksi => {
+		const borderLess = [false, false, false, false]
+	    const data = await $.ajax({
+			url: "<?php echo base_url('admin/load_handle/touch/get_pesanan_by_transaksi') ?>",
+			type: "POST",
+			data: {kodepesanan: id_transaksi},
+			dataType: "JSON"
+		})
+		console.log(data)
+	    const content = [
+	      {text: 'STRUK BELANJA', style: {alignment: 'center', bold: true, fontSize: 20}, margin: [0,0,0,8]}
+	    ]
+	    const body = [
+	    [/*{text: 'No', style: {bold:true} },*/
+	      {text: 'Nama Menu', style: {bold:true} },
+	      {text: 'Harga (Rp)', style: {bold:true} },
+	      {text: 'Qty', style: {bold:true} },
+	      {text: 'Total', style: {bold:true} }]
+	    ]
+	    for (const idx in data) body.push([ 
+	      {text:data[idx].menu_idmenu},
+	      {text:data[idx].menu_idmenu},
+	      {text:data[idx].jumlah},
+	      {text:data[idx].jumlah}
+	    ])
+	    content.push({
+	      table: {
+	        widths: ['*', '*', '*', '*'],
+	        body: body
+	      },
+	      // margin: [100,0,0,8]
+	      // style: {alignment: 'center'}
+	    })
+	    const docDefinition = {
+	      pageSize: 'A4',
+	      pageOrientation: 'potrait',
+	      content: content
+	    };
+	    pdfMake.createPdf(docDefinition).download('laporan-data-menu' + '.pdf');
+	}
 </script>

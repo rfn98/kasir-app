@@ -4,6 +4,7 @@ class Load_handle extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model("admin/load_handle_model", "l");
+		$this->load->database();
 	}
 
 	private function load_menu($post) {
@@ -37,7 +38,10 @@ class Load_handle extends CI_Controller {
 		$list_pesanan = json_decode($this->l->load_pesanan($post)); // string JSON
 		$decode = $list_pesanan->data;
 		$filter = [];
-		foreach ($decode as $k => $v) if ($v[6] == $_GET['date']) array_push($filter, $v);
+		if (isset($_GET['date']))
+			foreach ($decode as $k => $v) 
+				if ($v[6] == $_GET['date']) 
+					array_push($filter, $v);
 		
 		$list_pesanan->data = $filter;
 		$list_pesanan->recordsTotal = count($filter);
@@ -81,6 +85,12 @@ class Load_handle extends CI_Controller {
 		return $this->l->part_pesanan($post);
 	}
 
+	private function get_pesanan_by_transaksi($post) {
+		$post = $this->security->xss_clean($post);
+		$post = $this->corelib->escape_string($post);
+		return $this->l->get_pesanan_by_transaksi($post);
+	}
+
 	public function touch($func) {
 		switch($func) {
 			case "load_menu" :
@@ -103,8 +113,12 @@ class Load_handle extends CI_Controller {
 				break;
 			case "transaksi" :
 				echo self::transaksi($_POST);
+				break;
 			case "filter_pesanan" :
 				echo self::filter_pesanan($_POST);
+				break;
+			case "get_pesanan_by_transaksi" :
+				echo self::get_pesanan_by_transaksi($_POST);
 				break;
 		}
 	}

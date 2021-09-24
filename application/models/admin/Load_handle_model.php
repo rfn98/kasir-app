@@ -201,7 +201,8 @@ class Load_handle_model extends CI_model {
 
 		$dataTable = function() {
 			$d = [
-				"table" => "v_transaksi",
+				"table" => "transaksi",
+				// "table" => "v_transaksi",
 				"columns" => ["idtransaksi", "total", "bayar", "kembalian", "status"],
 				"order" => ["idtransaksi", null, null, null]
 			];
@@ -216,7 +217,9 @@ class Load_handle_model extends CI_model {
 				$sub[] = number_format($d->bayar, 0, "", ".");
 				$sub[] = number_format($d->kembalian, 0, "", ".");
 				$sub[] = ($d->status == 0) ? 'belum terbayar' : 'lunas';
-				$sub[] = "<a href=\"javascript:void(0)\" class=\"btn btn-sm btn-primary waves-effect\" data-action=\"bayar\" id=\"".$d->idtransaksi."\">bayar<a/>";
+				$sub[] = ($d->status == 0) ? 
+					"<a href=\"javascript:void(0)\" class=\"btn btn-sm btn-primary waves-effect\" data-action=\"bayar\" id=\"".$d->idtransaksi."\">Bayar<a/>" :
+						"<a href=\"javascript:void(0)\" class=\"btn btn-sm btn-success waves-effect\" data-action=\"print-struk\" id=\"".$d->idtransaksi."\">Cetak Struk<a/>" ;
 
 				$row[] = $sub;
 			}
@@ -237,6 +240,12 @@ class Load_handle_model extends CI_model {
 
 		return isset($post['tipe']) ? $select2() : $dataTable();
  	}
+
+ 	public function get_pesanan_by_transaksi($post) {
+		$q = $this->db->get_where("pesanan", $post);
+
+		return json_encode($q->result());
+	}
 }
 
 ?>
