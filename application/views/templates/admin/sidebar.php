@@ -21,40 +21,46 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="<?php echo base_url('admin/p/home') ?>">
+                        <a href="<?php echo base_url($this->uri->segment(1).'/p/home') ?>">
                             <i class="fa fa-home fa-fw fa-2x"></i>
                             <span>Home</span>
                         </a>
                     </li>
 
                     <li class="">
-                        <a href="<?php echo base_url('admin/p/menu_resto') ?>">
+                        <a href="<?php echo base_url($this->uri->segment(1).'/p/menu_resto') ?>">
                             <i class="fa fa-calendar-minus-o fa-fw fa-2x"></i>
                             <span>Daftar Menu</span>
                         </a>
                     </li>
 
                     <li class="">
-                        <a href="<?php echo base_url('admin/p/transaksi') ?>">
+                        <a href="<?php echo base_url($this->uri->segment(1).'/p/pesanan') ?>">
+                            <i class="fa fa-shopping-cart fa-fw fa-2x"></i>
+                            <span>Pesanan</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="<?php echo base_url($this->uri->segment(1).'/p/transaksi') ?>">
                             <i class="fa fa-money fa-fw fa-2x"></i>
                             <span>Transaksi</span>
                         </a>
                     </li>
 
-                    <li class="">
-                        <a href="<?php echo base_url('admin/p/pesanan') ?>">
-                            <i class="fa fa-shopping-cart fa-fw fa-2x"></i>
-                            <span>Pesanan</span>
+                    <li>
+                        <a href="<?php echo base_url("init/logout") ?>">
+                            <i class="fa fa-sign-out fa-fw fa-2x"></i>
+                            <span>Keluar</span>
                         </a>
                     </li>
 
-                    <li>
+                    <!-- <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="fa fa-paste fa-fw fa-2x"></i>
                             <span>Cetak laporan</span>
                         </a>
                         <ul class="ml-menu">
-                            <!-- <li>
+                            <li>
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Cards</span>
                                 </a>
@@ -63,37 +69,37 @@
                                         <a href="pages/widgets/cards/basic.html">Basic</a>
                                     </li>
                                 </ul>
-                            </li> -->
+                            </li>
                             <li>
                                 <a href="javascript:void(0)" class="menu-toggle">Pelanggan</a>
                                 <ul class="ml-menu">
                                     <li><a target="blank" href="<?php echo base_url('report/pdf/export/pelanggan') ?>">Pdf</a></li>
-                                    <!-- <li><a href="javascript:void(0)" id="export" data-action="excel" data-export="pelanggan">Excel</a></li> -->
+                                    <li><a href="javascript:void(0)" id="export" data-action="excel" data-export="pelanggan">Excel</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" class="menu-toggle">Menu</a>
                                 <ul class="ml-menu">
                                     <li><a target="blank" href="<?php echo base_url('report/pdf/export/menu_resto') ?>">Pdf</a></li>
-                                    <!-- <li><a href="javascript:void(0)" id="export" data-action="excel" data-export="menu_resto">Excel</a></li> -->
+                                    <li><a href="javascript:void(0)" id="export" data-action="excel" data-export="menu_resto">Excel</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" class="menu-toggle">Pesanan</a>
                                 <ul class="ml-menu">
                                     <li><a target="blank" href="<?php echo base_url('report/pdf/export/pesanan') ?>">Pdf</a></li>
-                                    <!-- <li><a href="javascript:void(0)" id="export" data-action="excel" data-export="pesanan">Excel</a></li> -->
+                                    <li><a href="javascript:void(0)" id="export" data-action="excel" data-export="pesanan">Excel</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" class="menu-toggle">Transaksi</a>
                                 <ul class="ml-menu">
                                     <li><a target="blank" href="<?php echo base_url('report/pdf/export/transaksi') ?>">Pdf</a></li>
-                                    <!-- <li><a href="javascript:void(0)" id="export" data-action="excel" data-export="transaksi">Excel</a></li> -->
+                                    <li><a href="javascript:void(0)" id="export" data-action="excel" data-export="transaksi">Excel</a></li>
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                 
                       
                     </li>

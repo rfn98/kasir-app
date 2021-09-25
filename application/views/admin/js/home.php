@@ -8,7 +8,7 @@
 		"serverside" : true,
 		"order" : [],
 		"ajax" : {
-			"url" : "<?php echo base_url("admin/init/touch/load_data_pelanggan") ?>",
+			"url" : "<?php echo base_url($this->uri->segment(1)."/init/touch/load_data_pelanggan") ?>",
 			"type" : "POST"
 		},
 		"columnDefs" : [
@@ -31,7 +31,7 @@
 			case "#edit-pelanggan" :
 					// load data pelanggan yang akan di update
 					$.ajax({
-						url : "<?php echo base_url('admin/init/touch/get_pelanggan') ?>",
+						url : "<?php echo base_url($this->uri->segment(1).'/init/touch/get_pelanggan') ?>",
 						type : "POST",
 						data : postData,
 						beforeSend : function() {
@@ -69,7 +69,7 @@
 						e.preventDefault();
 
 						$.ajax({
-							url : "<?php echo base_url('admin/init/touch/update_pelanggan') ?>",
+							url : "<?php echo base_url($this->uri->segment(1).'/init/touch/update_pelanggan') ?>",
 							type : "POST",
 							data : $(this).serialize(),
 							beforeSend :  function() {
@@ -91,7 +91,7 @@
 					let msg = window.confirm("Hapus pelanggan ini ?");
 					if(msg) {
 						$.ajax({
-							url : "<?php echo base_url("admin/init/touch/hapus_pelanggan") ?>",
+							url : "<?php echo base_url($this->uri->segment(1)."/init/touch/hapus_pelanggan") ?>",
 							data : {idpelanggan : $(this).attr("id")},
 							type : "POST",
 							success : function(data) {
@@ -107,7 +107,7 @@
 	const printPdf = async () => {
 	    const borderLess = [false, false, false, false]
 	    const list = await $.ajax({
-			url : "<?php echo base_url("admin/init/touch/load_data_pelanggan") ?>",
+			url : "<?php echo base_url($this->uri->segment(1)."/init/touch/load_data_pelanggan") ?>",
 			type : "POST",
 			dataType: 'JSON'
 		})

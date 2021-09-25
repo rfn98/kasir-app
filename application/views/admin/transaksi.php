@@ -7,8 +7,16 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="header">
-						<div class="pull-left">
-							<i class="fa fa-money"></i> Data transaksi
+						<div class="pull-left row">
+							<div class="col-md-1">
+								<i class="fa fa-fw fa-shopping-cart"></i>
+							</div>
+							<div class="col-md-5">
+								<span>Data Transaksi</span>
+							</div>
+							<div class="col-md-6" style="margin-top: -2%;">
+								<input class="form-control date-transaksi" type="date" onchange="initTable()">
+							</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -20,6 +28,7 @@
 									<th>Total</th>
 									<th>Bayar</th>
 									<th>Kembalian</th>
+									<th>Tanggal Transaksi</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>

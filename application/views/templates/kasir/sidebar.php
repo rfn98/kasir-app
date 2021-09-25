@@ -31,14 +31,20 @@
                             <span>Home</span>
                         </a>
                     </li>
-
                     <li>
+                        <a href="<?php echo base_url("init/logout") ?>">
+                            <i class="fa fa-sign-out fa-fw fa-2x"></i>
+                            <span>Keluar</span>
+                        </a>
+                    </li>
+
+                    <!-- <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="fa fa-paste fa-fw fa-2x"></i>
                             <span>Cetak laporan</span>
                         </a>
                         <ul class="ml-menu">
-                            <!-- <li>
+                            <li>
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Cards</span>
                                 </a>
@@ -47,7 +53,7 @@
                                         <a href="pages/widgets/cards/basic.html">Basic</a>
                                     </li>
                                 </ul>
-                            </li> -->
+                            </li>
                             <li>
                                 <a href="javascript:void(0)" class="menu-toggle">Transaksi</a>
                                 <ul class="ml-menu">
@@ -64,7 +70,7 @@
                             <i class="fa fa-book fa-fw fa-2x col-blue"></i>
                             <span>Bantuan</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- #Menu -->

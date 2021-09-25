@@ -57,6 +57,31 @@ class Load_handle extends CI_Controller {
 		return json_encode($list_pesanan);
 	}
 
+	private function filter_transaksi($post) {
+		$post = $this->security->xss_clean($post);
+		$post = $this->corelib->escape_string($post);
+		$list_transaksi = json_decode($this->l->transaksi($post)); // string JSON
+		$decode = $list_transaksi->data;
+		$filter = [];
+		if (isset($_GET['date']))
+			foreach ($decode as $k => $v) 
+				if ($v[4] == $_GET['date']) 
+					array_push($filter, $v);
+		
+		$list_transaksi->data = $filter;
+		$list_transaksi->recordsTotal = count($filter);
+		$list_transaksi->recordsFiltered = count($filter);
+		// 21-02-2019
+
+		/*echo "<pre>";
+		var_dump($list_pesanan);
+		// var_dump(json_decode($this->l->load_pesanan($post)));
+		echo "</pre>";*/
+		// return $this->l->load_pesanan($post);
+		// return $_GET['date'];
+		return json_encode($list_transaksi);
+	}
+
 	private function pelanggan($post) {
 		$post = $this->security->xss_clean($post);
 		$post = $this->corelib->escape_string($post);
@@ -116,6 +141,9 @@ class Load_handle extends CI_Controller {
 				break;
 			case "filter_pesanan" :
 				echo self::filter_pesanan($_POST);
+				break;
+			case "filter_transaksi" :
+				echo self::filter_transaksi($_POST);
 				break;
 			case "get_pesanan_by_transaksi" :
 				echo self::get_pesanan_by_transaksi($_POST);

@@ -204,18 +204,25 @@ class Load_handle_model extends CI_model {
 				"table" => "transaksi",
 				// "table" => "v_transaksi",
 				"columns" => ["idtransaksi", "total", "bayar", "kembalian", "status"],
-				"order" => ["idtransaksi", null, null, null]
+				"order" => ["status", "created_at", null, null]
 			];
 
 			$this->dt->core_data($d);
 
+			$list = $this->db->select(["idtransaksi", "total", "bayar", "kembalian", "status", "date(created_at) created_at"])->from('transaksi')
+				->order_by('status')
+				->order_by('created_at', 'DESC')
+			->get()->result();
+
 			$row = [];
-			foreach($this->dt->exec_query()['fetch'] as $d) {
+			// foreach($this->dt->exec_query()['fetch'] as $d) {
+			foreach($list as $d) {
 				$sub = [];
 				$sub[] = $d->idtransaksi;
 				$sub[] = number_format($d->total, 0, "", ".");
 				$sub[] = number_format($d->bayar, 0, "", ".");
 				$sub[] = number_format($d->kembalian, 0, "", ".");
+				$sub[] = date("d-m-Y", strtotime($d->created_at));
 				$sub[] = ($d->status == 0) ? 'belum terbayar' : 'lunas';
 				$sub[] = ($d->status == 0) ? 
 					"<a href=\"javascript:void(0)\" class=\"btn btn-sm btn-primary waves-effect\" data-action=\"bayar\" id=\"".$d->idtransaksi."\">Bayar<a/>" :
@@ -242,9 +249,10 @@ class Load_handle_model extends CI_model {
  	}
 
  	public function get_pesanan_by_transaksi($post) {
-		$q = $this->db->get_where("pesanan", $post);
+		$q = $this->db->from('pesanan p')->join('menu m', 'm.idmenu = p.menu_idmenu')->where('kodepesanan', $post['kodepesanan']);
+		// $q = $this->db->get_where("pesanan", $post);
 
-		return json_encode($q->result());
+		return json_encode($q->get()->result());
 	}
 }
 

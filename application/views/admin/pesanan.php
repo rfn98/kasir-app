@@ -52,7 +52,7 @@
 								<span>Data pesanan</span>
 							</div>
 							<div class="col-md-7" style="margin-top: -2%;">
-								<input class="form-control" type="date" onchange="initTable({filter: true})">
+								<input class="form-control date-pesanan" type="date" onchange="initTable({filter: true})">
 							</div>
 						</div>
 						<div class="pull-right">

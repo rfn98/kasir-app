@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	const initTable = obj => {
 		if (obj.filter) $('.table-pesanan').DataTable().destroy()
-		const date = '25-02-2019'
+		const date = moment($('.date-pesanan').val()).format('DD-MM-YYYY')
 		let tablePesanan = $(".table-pesanan").DataTable({
 			processing : true,
 			serverSide : true,
@@ -65,12 +65,14 @@
 	    ]
 	    const body = [
 	    [/*{text: 'No', style: {bold:true} },*/
+	      {text: 'Kode Pesanan', style: {bold:true} },
 	      {text: 'Nama Pelanggan', style: {bold:true} },
 	      {text: 'Nama Menu', style: {bold:true} },
 	      {text: 'Qty', style: {bold:true} },
 	      {text: 'Total (Rp)', style: {bold:true} }]
 	    ]
 	    for (const idx in list.data) body.push([ 
+	      {text:list.data[idx][1]},
 	      {text:list.data[idx][2]},
 	      {text:list.data[idx][3]},
 	      {text:list.data[idx][4]},
@@ -78,7 +80,7 @@
 	    ])
 	    content.push({
 	      table: {
-	        widths: ['*', '*', '*', '*'],
+	        widths: ['*', '*', '*', '*', '*'],
 	        body: body
 	      },
 	      // margin: [100,0,0,8]
@@ -86,7 +88,7 @@
 	    })
 	    const docDefinition = {
 	      pageSize: 'A4',
-	      pageOrientation: 'potrait',
+	      pageOrientation: 'landscape',
 	      content: content
 	    };
 	    pdfMake.createPdf(docDefinition).download('laporan-data-pesanan' + '.pdf');

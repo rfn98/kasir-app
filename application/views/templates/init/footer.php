@@ -56,25 +56,27 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.2/vfs_fonts.js" integrity="sha512-cktKDgjEiIkPVHYbn8bh/FEyYxmt4JDJJjOCu5/FQAkW4bc911XtKYValiyzBiJigjVEvrIAyQFEbRJZyDA1wQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- init -->
     <?php $this->corelib->view_loader("templates/js/init.php") ?>
 
     <?php  
 
         // admin view
-        if($this->uri->segment(3) == "home" && $this->uri->segment(1) == "admin") {
+        if($this->uri->segment(3) == "home" && ($this->uri->segment(1) == "admin" || $this->uri->segment(1) == "owner")) {
             $this->corelib->view_loader("admin/js/home");
             $this->corelib->view_loader("templates/admin/js");
         }
-        else if($this->uri->segment(3) == "menu_resto" && $this->uri->segment(1) == "admin") {
+        else if($this->uri->segment(3) == "menu_resto" && ($this->uri->segment(1) == "admin" || $this->uri->segment(1) == "owner")) {
             $this->corelib->view_loader("admin/js/menu_resto");
             $this->corelib->view_loader("templates/admin/js");
         }
-        else if($this->uri->segment(3) == "pesanan" && $this->uri->segment(1) == "admin"){
+        else if($this->uri->segment(3) == "pesanan" && ($this->uri->segment(1) == "admin" || $this->uri->segment(1) == "owner")){
             $this->corelib->view_loader("admin/js/pesanan");
             $this->corelib->view_loader("templates/admin/js");
         }
-        else if($this->uri->segment(3) == "transaksi" && $this->uri->segment(1) == "admin"){
+        else if($this->uri->segment(3) == "transaksi" && ($this->uri->segment(1) == "admin" || $this->uri->segment(1) == "owner")){
             $this->corelib->view_loader("admin/js/transaksi");
             $this->corelib->view_loader("templates/admin/js");
         }
